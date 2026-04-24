@@ -1,0 +1,33 @@
+@if (auth.isLoggedIn()) {
+  <mat-toolbar class="navbar">
+    <div class="navbar-left">
+      <span class="logo" routerLink="/assignments">
+        📚 <strong>Assignments</strong>
+      </span>
+    </div>
+
+    <div class="navbar-center">
+      <button mat-button routerLink="/assignments" routerLinkActive="active-link">
+        <mat-icon>list</mat-icon> Liste
+      </button>
+      @if (auth.isAdmin()) {
+        <button mat-button routerLink="/assignments/add" routerLinkActive="active-link">
+          <mat-icon>add_circle</mat-icon> Ajouter
+        </button>
+      }
+    </div>
+
+    <div class="navbar-right">
+      <div class="user-info">
+        <div class="user-avatar">{{ auth.getUser()?.nom[0] }}</div>
+        <div class="user-details">
+          <span class="user-name">{{ auth.getUser()?.nom }}</span>
+          <span class="user-role">{{ auth.getUser()?.role === 'admin' ? '👑 Admin' : '🎓 Élève' }}</span>
+        </div>
+      </div>
+      <button mat-icon-button (click)="logout()" matTooltip="Déconnexion" class="logout-btn">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+}

@@ -1,0 +1,57 @@
+<div class="container">
+  <h2>✏️ Modifier l'Assignment</h2>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Auteur</mat-label>
+          <input matInput formControlName="auteur" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Matière</mat-label>
+          <mat-select formControlName="matiere">
+            @for (m of matieres; track m) {
+              <mat-option [value]="m">{{ m }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Date de rendu</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateDeRendu">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Note /20</mat-label>
+          <input matInput type="number" formControlName="note" min="0" max="20">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Remarques</mat-label>
+          <textarea matInput formControlName="remarques" rows="3"></textarea>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="rendu">Rendu</mat-checkbox>
+
+        <div class="actions">
+          <button mat-button type="button" (click)="router.navigate(['/assignments'])">
+            Annuler
+          </button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+            💾 Sauvegarder
+          </button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

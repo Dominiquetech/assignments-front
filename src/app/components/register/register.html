@@ -1,0 +1,36 @@
+<div class="register-container">
+  <mat-card class="register-card">
+    <mat-card-header>
+      <mat-card-title>Créer un compte</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nom complet</mat-label>
+          <input matInput formControlName="nom" autocomplete="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" autocomplete="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput formControlName="password" type="password" autocomplete="new-password">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Rôle</mat-label>
+          <mat-select formControlName="role">
+            <mat-option value="eleve">Élève</mat-option>
+            <mat-option value="admin">Admin</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="loading">
+          {{ loading ? 'Création...' : 'Créer le compte' }}
+        </button>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <p>Déjà un compte ? <a routerLink="/login">Se connecter</a></p>
+    </mat-card-actions>
+  </mat-card>
+</div>

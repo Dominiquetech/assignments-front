@@ -1,0 +1,89 @@
+@if (assignment) {
+  <div class="container">
+    <button mat-button (click)="router.navigate(['/assignments'])" class="back-btn">
+      <mat-icon>arrow_back</mat-icon> Retour à la liste
+    </button>
+
+    <mat-card class="detail-card">
+      <!-- Header coloré avec image matière -->
+      <div class="card-header">
+        <div class="header-left">
+          @if (getMatiere(assignment.matiere).image) {
+            <img [src]="getMatiere(assignment.matiere).image"
+                 [alt]="assignment.matiere"
+                 class="matiere-img">
+          }
+          <div class="header-info">
+            <span class="matiere-label">{{ assignment.matiere }}</span>
+            <h1>{{ assignment.nom }}</h1>
+            <span class="prof-label">
+              👨‍🏫 {{ getMatiere(assignment.matiere).prof }}
+            </span>
+          </div>
+        </div>
+        <div class="header-right">
+          @if (assignment.rendu) {
+            <span class="status-badge status-rendu">✅ Rendu</span>
+          } @else {
+            <span class="status-badge status-attente">⏳ En attente</span>
+          }
+        </div>
+      </div>
+
+      <mat-card-content>
+        <div class="info-grid">
+
+          <div class="info-card">
+            <mat-icon>person</mat-icon>
+            <div>
+              <span class="info-label">Auteur</span>
+              <span class="info-value">{{ assignment.auteur }}</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <mat-icon>calendar_today</mat-icon>
+            <div>
+              <span class="info-label">Date de rendu</span>
+              <span class="info-value">{{ assignment.dateDeRendu | date:'dd MMMM yyyy' }}</span>
+            </div>
+          </div>
+
+          <div class="info-card" [class.note-good]="assignment.note >= 10" [class.note-bad]="assignment.note < 10 && assignment.note !== null">
+            <mat-icon>grade</mat-icon>
+            <div>
+              <span class="info-label">Note</span>
+              <span class="info-value note-value">
+                {{ assignment.note !== null ? assignment.note + ' / 20' : 'Non noté' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="info-card full-width">
+            <mat-icon>comment</mat-icon>
+            <div>
+              <span class="info-label">Remarques</span>
+              <span class="info-value">{{ assignment.remarques || 'Aucune remarque' }}</span>
+            </div>
+          </div>
+
+        </div>
+      </mat-card-content>
+
+      @if (auth.isAdmin()) {
+        <mat-card-actions class="card-actions">
+          <button mat-raised-button color="accent" (click)="modifier()">
+            <mat-icon>edit</mat-icon> Modifier
+          </button>
+          <button mat-raised-button color="warn" (click)="supprimer()">
+            <mat-icon>delete</mat-icon> Supprimer
+          </button>
+        </mat-card-actions>
+      }
+    </mat-card>
+  </div>
+} @else {
+  <div class="loading">
+    <p>Chargement...</p>
+  </div>
+}

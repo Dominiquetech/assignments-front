@@ -1,0 +1,64 @@
+<div class="login-container">
+  <div class="login-wrapper">
+
+    <!-- Logo / Titre -->
+    <div class="login-header">
+      <div class="logo">📚</div> <br>
+      <h1>Assignments App</h1>
+      <p>Gérez vos devoirs facilement</p>
+    </div>
+
+    <mat-card class="login-card">
+      <mat-card-content>
+        <h2>Connexion</h2>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input matInput formControlName="email" type="email" autocomplete="email" placeholder="exemple@email.com">
+            <mat-error>Email invalide</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Mot de passe</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input matInput formControlName="password" type="password" autocomplete="current-password">
+            <mat-error>Mot de passe requis</mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" class="full-width submit-btn" [disabled]="loading">
+            @if (loading) {
+              <span>Connexion en cours...</span>
+            } @else {
+              <mat-icon>login</mat-icon>
+              <span>Se connecter</span>
+            }
+          </button>
+        </form>
+
+        <!-- Accès test -->
+        <div class="test-credentials">
+          <p class="test-title">🔑 Accès admin test</p>
+          <div class="credential">
+            <span class="cred-label">Email</span>
+            <code>admin&#64;admin.com</code>
+          </div>
+          <div class="credential">
+            <span class="cred-label">Mot de passe</span>
+            <code>admin123</code>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <p class="register-link">
+          Pas encore de compte ?
+          <a routerLink="/register">S'inscrire</a>
+        </p>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+</div>

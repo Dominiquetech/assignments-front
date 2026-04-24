@@ -1,0 +1,69 @@
+<div class="container">
+  <h2>➕ Nouvel Assignment</h2>
+  <mat-stepper linear>
+
+    <mat-step [stepControl]="step1" label="Informations générales">
+      <form [formGroup]="step1">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nom de l'assignment</mat-label>
+          <input matInput formControlName="nom" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Auteur (nom de l'élève)</mat-label>
+          <input matInput formControlName="auteur" autocomplete="off">
+        </mat-form-field>
+        <div class="step-actions">
+          <button mat-raised-button color="primary" matStepperNext [disabled]="step1.invalid">
+            Suivant →
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="step2" label="Matière et date">
+      <form [formGroup]="step2">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Matière</mat-label>
+          <mat-select formControlName="matiere">
+            @for (m of matieres; track m) {
+              <mat-option [value]="m">{{ m }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Date de rendu</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateDeRendu">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>← Précédent</button>
+          <button mat-raised-button color="primary" matStepperNext [disabled]="step2.invalid">
+            Suivant →
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="step3" label="Note et remarques">
+      <form [formGroup]="step3">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Note /20</mat-label>
+          <input matInput type="number" formControlName="note" min="0" max="20">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Remarques</mat-label>
+          <textarea matInput formControlName="remarques" rows="3"></textarea>
+        </mat-form-field>
+        <mat-checkbox formControlName="rendu">Déjà rendu</mat-checkbox>
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>← Précédent</button>
+          <button mat-raised-button color="primary" (click)="submit()">
+            ✅ Créer l'assignment
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+  </mat-stepper>
+</div>
