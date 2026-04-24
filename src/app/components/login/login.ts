@@ -9,14 +9,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login',  
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
+    MatProgressSpinnerModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
