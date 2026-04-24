@@ -31,9 +31,11 @@
             @if (loading) {
               <span>Connexion en cours...</span>
             } @else {
-              <mat-icon>login</mat-icon>
-              <span>Se connecter</span>
-            }
+  <ng-container>
+    <mat-spinner></mat-spinner>
+    <mat-icon>login</mat-icon>
+  </ng-container>
+}
           </button>
         </form>
 
