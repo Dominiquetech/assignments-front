@@ -34,7 +34,45 @@
       </button>
     }
   </div>
+<!-- BARRE DE RECHERCHE + FILTRES -->
 
+<div class="filters-container">
+  <mat-form-field appearance="outline">
+    <mat-label>🔍 Rechercher</mat-label>
+    <input matInput [(ngModel)]="searchText" (ngModelChange)="appliquerFiltres()" placeholder="Nom, auteur, matière...">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Matière</mat-label>
+    <mat-select [(ngModel)]="filtreMatiere" (ngModelChange)="appliquerFiltres()">
+      <mat-option value="">Toutes</mat-option>
+      <mat-option *ngFor="let m of matieres" [value]="m">{{ m }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Statut</mat-label>
+    <mat-select [(ngModel)]="filtreStatut" (ngModelChange)="appliquerFiltres()">
+      <mat-option value="">Tous</mat-option>
+      <mat-option value="rendu">✅ Rendu</mat-option>
+      <mat-option value="non rendu">⏳ Non rendu</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Note min</mat-label>
+    <input matInput type="number" [(ngModel)]="noteMin" (ngModelChange)="appliquerFiltres()" min="0" max="20">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Note max</mat-label>
+    <input matInput type="number" [(ngModel)]="noteMax" (ngModelChange)="appliquerFiltres()" min="0" max="20">
+  </mat-form-field>
+
+  <button mat-stroked-button color="warn" (click)="resetFiltres()">
+    <mat-icon>clear</mat-icon> Réinitialiser
+  </button>
+</div>
   <!-- Table -->
   <div class="table-wrapper mat-elevation-z4">
     <table mat-table [dataSource]="assignments">
