@@ -45,15 +45,18 @@ export class LoginComponent {
     });
   }
 
-  submit() {
-    if (this.form.invalid) return;
-    this.loading = true;
-    this.auth.login(this.form.value.email, this.form.value.password).subscribe({
-      next: () => this.router.navigate(['/assignments']),
-      error: () => {
-        this.snack.open('Email ou mot de passe incorrect', 'Fermer', { duration: 3000 });
-        this.loading = false;
-      }
-    });
-  }
+submit() {
+  if (this.form.invalid) return;
+  this.loading = true;
+  this.auth.login(this.form.value.email, this.form.value.password).subscribe({
+    next: () => {
+      this.loading = false;
+      this.router.navigate(['/assignments']);
+    },
+    error: () => {
+      this.snack.open('Email ou mot de passe incorrect', 'Fermer', { duration: 3000 });
+      this.loading = false;
+    }
+  });
+}
 }

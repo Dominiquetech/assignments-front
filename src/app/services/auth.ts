@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'https://assignments-back-lxvq.onrender.com/api/auth';
+  private apiUrl = 'https://assignments-back-1.onrender.com/api/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
 

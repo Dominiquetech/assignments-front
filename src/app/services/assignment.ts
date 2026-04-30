@@ -4,7 +4,7 @@ import { AuthService } from './auth';
 
 @Injectable({ providedIn: 'root' })
 export class AssignmentService {
-  private apiUrl = 'https://assignments-back-lxvq.onrender.com/api/assignments';
+  private apiUrl = 'https://assignments-back-1.onrender.com/api/assignments';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 

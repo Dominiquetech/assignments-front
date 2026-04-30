@@ -27,16 +27,10 @@
             <mat-error>Mot de passe requis</mat-error>
           </mat-form-field>
 
-          <button mat-raised-button color="primary" type="submit" class="full-width submit-btn" [disabled]="loading">
-            @if (loading) {
-              <span>Connexion en cours...</span>
-            } @else {
-  <ng-container>
-    <mat-spinner></mat-spinner>
-    <mat-icon>login</mat-icon>
-  </ng-container>
-}
-          </button>
+         <button mat-raised-button color="primary" type="submit" class="full-width submit-btn" [disabled]="loading">
+  <mat-icon>login</mat-icon>
+  <span>{{ loading ? 'Connexion...' : 'Se connecter' }}</span>
+</button>
         </form>
 
         <!-- Accès test -->
